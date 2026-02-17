@@ -26,6 +26,7 @@ let arr=[
 }
 ]
 
+
 function createlist(arr){
     let result=`<ul class="list-group">`
 
@@ -51,7 +52,7 @@ function onaddtodo(eve){
         todoItem:todoitem.value,
         todoId:Date.now().toString()
     }
-     arr.unshift(obj);   // ⭐ add to array
+     arr.unshift(obj);
     todoform.reset();
 
  let li=document.createElement('li')
@@ -82,7 +83,7 @@ function onEditbtn(eve){
 
     let EDIT_OBJ=arr.find(c=>c.todoId===EDIT_ID);
 
-    todoItem: todoitem.value;
+    todoitem.value=EDIT_OBJ.todoItem;
     submitbtn.classList.add('d-none');
     updatebtn.classList.remove('d-none');
     
@@ -91,7 +92,7 @@ function onEditbtn(eve){
 //update
 function onupdatebtn(eve){
      let UPDATE_OBJ={
-        todoItem:todoitem.EDIT_OBJ,
+        todoItem:todoitem.value,
         todoId:EDIT_ID
      }
 
@@ -104,16 +105,11 @@ function onupdatebtn(eve){
      let li=document.getElementById(EDIT_ID).firstElementChild
      li.innerText=UPDATE_OBJ.todoItem;
 
-   
-  
-
-
-
 }
 
 createlist(arr);
 todoform.addEventListener('submit',onaddtodo);
-updatebtn.addEventListener('click',onupdatebtn)
+updatebtn.addEventListener('click',onupdatebtn);
 
 
 
